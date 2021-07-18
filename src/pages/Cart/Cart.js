@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { CARTLIST_API, ORDER_API } from '../../../src/config.js';
 import './Cart.scss';
-
 class Cart extends React.Component {
   constructor() {
     super();
@@ -11,7 +10,6 @@ class Cart extends React.Component {
       point: 0,
     };
   }
-
   responseQuantity = (productID, quantity) => {
     fetch(`${CARTLIST_API}`, {
       method: 'PATCH',
@@ -22,7 +20,6 @@ class Cart extends React.Component {
       }),
     });
   };
-
   componentDidMount() {
     fetch(`${CARTLIST_API}`, {
       headers: { Authorization: localStorage.getItem('access_token') },
@@ -36,10 +33,10 @@ class Cart extends React.Component {
             cartList: res.product,
             point: res.point,
           });
+          console.log(`res`, res);
         }
       });
   }
-
   handleIncrement = index => {
     const newCartList = [...this.state.cartList];
     const newQuantity = newCartList[index].quantity + 1;
@@ -47,36 +44,29 @@ class Cart extends React.Component {
     this.setState({
       cartList: newCartList,
     });
-
     this.responseQuantity(this.state.cartList[index].productID, newQuantity);
   };
-
   handleDecrement = index => {
     const newCartList = [...this.state.cartList];
     const newQuantity = newCartList[index].quantity - 1;
     newCartList[index] = { ...newCartList[index], quantity: newQuantity };
-
     if (newCartList[index].quantity <= 0) {
       return;
     }
     this.setState({
       cartList: newCartList,
     });
-
     this.responseQuantity(this.state.cartList[index].productID, newQuantity);
   };
-
   handleDeleteSelect = idx => {
     const newCartList = this.state.cartList.filter(
       cartList => cartList.productID !== this.state.cartList[idx].productID
     );
-
     fetch(`${CARTLIST_API}?item=${this.state.cartList[idx].productID}`, {
       method: 'DELETE',
       headers: { Authorization: localStorage.getItem('access_token') },
     }).then(() => this.setState({ cartList: newCartList }));
   };
-
   handleDeleteAll = () => {
     fetch(`${CARTLIST_API}`, {
       method: 'DELETE',
@@ -93,7 +83,6 @@ class Cart extends React.Component {
         })
     );
   };
-
   order = () => {
     const { cartList } = this.state;
     const orderList = cartList.map(cart => {
@@ -104,23 +93,21 @@ class Cart extends React.Component {
       method: 'POST',
       headers: { Authorization: localStorage.getItem('access_token') },
       body: JSON.stringify({
-        products: orderList,
+        products: { ...orderList },
       }),
     }).then(
       setTimeout(() => {
         this.props.history.push('/order');
       }, 100)
     );
+    console.log(`orderList`, orderList);
   };
-
   render() {
     const { cartList } = this.state;
     const totalPrice = cartList
       .map(cart => cart.productPrice * cart.quantity)
       .reduce((accumulator, currentValue) => accumulator + currentValue, 0);
-
     const remainedPoint = parseInt(this.state.point - totalPrice);
-
     if (this.state.cartList.length === 0) {
       return (
         <div className="Cart">
@@ -146,15 +133,16 @@ class Cart extends React.Component {
                 몇가지 건강설문을 통해 <br />
                 나만을 위한 영양성분을 찾아보세요.
               </p>
-              <button type="submit" className="nullBtn">
-                나만의 영양성분 찾기
-              </button>
+              <Link to="./recommend">
+                <button type="submit" className="nullBtn">
+                  나만의 영양성분 찾기
+                </button>
+              </Link>
             </div>
           </div>
         </div>
       );
     }
-
     return (
       <div className="Cart">
         <div className="cartView">
