@@ -8,7 +8,7 @@
 - 구성 : Front 3명, Back 3명
 - [Front-end Github](https://github.com/wecode-bootcamp-korea/22-1st-Villy-backend)
 - [Back-end Github](https://github.com/wecode-bootcamp-korea/22-1st-Villy-frontend)
-- [프로젝트 ](https://www.youtube.com/watch?v=CdPFYuU889U)
+- [프로젝트 동영상 주소](https://www.youtube.com/watch?v=CdPFYuU889U)
 
 # 👉🏻 Main
 
