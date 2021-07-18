@@ -1,14 +1,13 @@
 # Villy 💊
 
-
 ---------
 
 # 👉🏻Introduction
-영양제 추천, 구독 사이트인 필리를 클론하였습니다. 
+- 비타민 판매 사이트
 - 기간 : 21.07.05 - 21.07.16
-- 구성 : Front-end 3명, Back-end 3명
-- [백엔드 깃헙주소](https://github.com/wecode-bootcamp-korea/22-1st-Villy-backend)
-- [프론트엔드 깃헙주소](https://github.com/wecode-bootcamp-korea/22-1st-Villy-frontend)
+- 구성 : Front 3명, Back 3명
+- [Front-end Github](https://github.com/wecode-bootcamp-korea/22-1st-Villy-backend)
+- [Back-end Github](https://github.com/wecode-bootcamp-korea/22-1st-Villy-frontend)
 
 # 👉🏻 Main
 
@@ -26,24 +25,8 @@
 - Javascript, JSX 
 - SCSS, CSS
 
-
-## Back-end
-- Python
-- Django Web Framework
-- AWS EC2, RDS, S3
-- MySQL
-
-# 👉🏻 Features
-## Front-end
+# 👉🏻 내가 맡은 features
 - Login
 - Signup
-- Main
-- Recommend
-- Product
 - Cart
-
-## Back-end
-- Users 
-- Products
-- Carts
-- Orders
+- Nav
